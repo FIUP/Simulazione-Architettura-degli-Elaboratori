@@ -18,6 +18,8 @@ decisione finale di valutare come overflow come condizione di errore o come rapp
 rappresenta un numero denormalizzato, e il vero esponente è -126 o -1022.
 - Un esponente di tutti 1 con mantissa non nulla ha il valore simbolico di NaN, utile per segnalare condizioni di errore.
 
+- - -
+
 # Si descriva nel dettaglio la modalità di indirizzamento per spiazzamento.
 
 L'indirizzamento per spiazzamento combina le capacità di quello diretto con quelle del registro indiretto. 
