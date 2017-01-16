@@ -43,4 +43,17 @@ di 1.
 
 - - -
 
+# Si elenchino, e si discutano, i fattori che condizionano e che sono condizionati dalla lunghezza del formato
+delle istruzioni.
 
+- - -
+
+# Nel contesto di una pipeline, si motivi e si spieghi in dettaglio la tecnica del buffer circolare per la gestione
+delle dipendenze da controllo.
+
+- - -
+
+# Si motivi la presenza nei processori RISC di un ampio banco di registri a uso generale. Spiegare in
+dettaglio il meccanismo di funzionamento di tale banco di registri.
+
+- - -
