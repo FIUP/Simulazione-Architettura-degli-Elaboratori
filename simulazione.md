@@ -40,3 +40,7 @@ Esistono tre sottomodalità:
 
 3. Nell’indicizzazione il campo indirizzo rappresenta un indirizzo di memoria centrale e il registro referenziato contiene uno spiazzamento positivo da tale indirizzo. L'indicizzazione si rivela molto utile nelle operazioni operative. Supponendo di avere un elenco di numeri che parte dall'indirizzo A, e di dover scorrere tale elenco, sarà necessario incrementare A di (ad esempio) 1 ogni volta. Il valore A viene memorizzato nel campo dell'indirizzo dell'istruzione e al registro scelto, detto registro indice, viene inizialmente assegnato il valore 0. Dopo ciascuna operazione, il registro indice è incrementato. Alcune sistemi impiegano l'incremento all'interno dello stesso ciclo di clock dell'operazione; l'indicizzazione di tali sistemi è detta *autoindicizzazione*
 di 1.
+
+- - -
+
+
