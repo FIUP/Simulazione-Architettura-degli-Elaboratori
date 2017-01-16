@@ -25,15 +25,15 @@ rappresenta un numero denormalizzato, e il vero esponente è -126 o -1022.
 L'indirizzamento per spiazzamento combina le capacità di quello diretto con quelle del registro indiretto. 
 Il suo meccanismo di base è EA = A + (R), con:
 
-* A: contenuto di un campo indirizzo di un'istruzione
-* R: contenuto di un campo indirizzo di un'istruzione che riferisce a un registro
-* EA: indirizzo effetivo della locazione che contiene l'operando referenziato.
+  * A: contenuto di un campo indirizzo di un'istruzione
+  * R: contenuto di un campo indirizzo di un'istruzione che riferisce a un registro
+  * EA: indirizzo effetivo della locazione che contiene l'operando referenziato.
 Tale tecnica prevede che l'istruzione abbia due campi indirizzo, di cui uno esplicito. Il valore A di un campo indirizzo è usato direttamente. L'altro campo indirizzo (oppure un riferimento implicito basato sull'OP) si riferisce ad un altro registro il cui valore, sommato ad A, dia l'indirizzo effettivo.
 Esistono tre sottomodalità:
 
-1. indirizzamento relativo
-2. indirizzamento base-registro
-3. indicizzazione
+* ## indirizzamento relativo
+* ## indirizzamento base-registro
+* ## indicizzazione
 
 1. Nell'indirizzamento relativo il registro implicitamente referenziato è il PC, quindi l'indirizzo dell'istruzione corrente viene sommato al campo indirizzo per produrre l'EA. Il campo indirizzo viene trattato come un numero in complemento a 2. Questa modalità di spiazzamento sfrutta la località dei riferimenti: se la maggior parte dei riferimenti alla memoria sono relativamenti vicini all'istruzione in esecuzione, allora l'impiego dell'indirizzamento relativo risparmia bit di indirizzo nell'istruzione.
 
