@@ -129,7 +129,7 @@ I microprocessori hanno visto una crescita esponenziale delle prestazioni grazie
 # Si descrivano le possibili alternative di organizzazione per un processore multicore. 
 
 L'organizzazione di un processore multicore dipende da: 
-- il numero di core per cip 
+- il numero di core per chip 
 - la tipologia di core, cioè sei i singoli core sono superscalari o sono multhithreading simultaneo (SMT). I core più vecchi avevano organizzazione superscalare, mentre le cpu multicore più recenti hanno organizzazione SMT. 
 - numero di livelli di cache per chip (che possono essere L1,L2,L3) 
 - quantità di cache condivisa, la cui caratteristica divide i multicore in 4 macrogruppi:
