@@ -69,6 +69,29 @@ Nel caso in cui la dipendenza venga rilevata come risolvibile, allora nelle MIPS
 
 - - -
 
+# Spiegare in che modo un compilatore possa aiutare l’utilizzo efficace dei registri da parte di un’architettura RISC.
+
+L’obiettivo del compilatore è mantenere gli operandi necessari nei registri per la maggior parte del tempo e minimizzare il numero di accessi alla memoria. 
+Il suo compito è eseguire un’approfondita analisi del programma sottopostogli e mappare ogni registro simbolico (o virtuale) a cui è stata assegnata una variabile, in un registro fisico del processore. 
+Più registri simbolici possono esser mappati su uno stesso registro reale se il loro uso non si sovrappone temporalmente.
+Se i registri reali non sono sufficienti per contenere tutte le variabili riferite in un certo intervallo di tempo, allora queste ultime vengono assegnate a locazioni di memoria.
+L’essenza dell’ottimizzazione è quella di decidere quali variabili debbano essere assegnate ai registri in un certo punto del programma. Il mapping delle variabili è equivalente alla risoluzione del problema di colorazione di un grafo. In questo problema dato un grafo costituito da nodi connessi ad archi, si vuole assegnare un colore per ogni nodo in modo tale che:
+Nodi adiacenti connessi da archi abbiamo colori diversi
+Usare il minor numero possibile di colori
+I nodi rappresentano i registri virtuali e i colori i registri reali.
+Essendovi a disposizione n registri reali, il grafo dovrà essere colorato con al massimo n colori. Se vi sono nodi  che non potranno essere colorati, allora verranno copiati in memoria.
+
+# Spiegare in dettaglio come un’architettura RISC possa trattare efficientemente la chiamata annidata di procedure
+
+Dall'osservazione che le chiamate di procedura tipicamente coinvolgono pochi parametri e non presentano un grado di annidamento elevata, si è pensato di usare molti gruppi di registri, detti finestre di registri, per gestire le chiamate annidate. 
+Una chiamata seleziona automaticamente un nuovo gruppo di registri e quando essa è conclusa ed effettua il ritorno, riseleziona il gruppo di registri riferito alla chiamata che l'aveva chiamata. 
+Ogni gruppo di registri è suddiviso in tre sottogruppi: parametri passati alla procedura, registri che memorizzano il contenuto delle variabili locali della procedura e registri temporanei che gestiscono il ritorno della procedura. 
+I registri temporanei di un gruppo si sovrappongono perfettamente con quelli che contengono i parametri del gruppo successivo, cioè del gruppo riferito ad una chiamata annidata. Tali registri sono fisicamente gli stessi e ciò permette il passaggio dei parametri senza trasferimento dei dati. 
+La realizzazione fisica di finestre di registri sovrapposte avviene tramite buffer circolare. 
+Nel buffer circolare, quando avviene una chiamata il puntatore alla finestra corrente (CWP) viene aggiornato per farlo puntare alla finestra attiva. Se si esaurisce la capacità del buffer, cioè tutte le finestre sono in uso a causa di chiamate annidate, la finestra che per prima è stata inserita nel buffer viene salvata in memoria principale e quindi sovrascritta dalla nuova. Quando una procedura termina, una finestra viene liberata e grazie ad un apposito puntatore (SWP) è possibile ripristinare l'ultima finestra salvata in memoria principale.
+
+- - -
+
 # Formato delle istruzioni
 
 Il formato delle istruzioni descrive i campi dell'istruzione, la sua lunghezza ed numero di indirizzi. In qualsiasi formato è incluso il codice operativo, che discrimina quale operazione fare, ed zero, uno o più operandi in modo implicito o esplicito. 
