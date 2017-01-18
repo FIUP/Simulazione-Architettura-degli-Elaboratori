@@ -69,6 +69,48 @@ Nel caso in cui la dipendenza venga rilevata come risolvibile, allora nelle MIPS
 
 - - -
 
+# Formato delle istruzioni
+
+Il formato delle istruzioni descrive i campi dell'istruzione, la sua lunghezza ed numero di indirizzi. In qualsiasi formato è incluso il codice operativo, che discrimina quale operazione fare, ed zero, uno o più operandi in modo implicito o esplicito. 
+
+Il formato delle istruzioni può essere a lunghezza: 
+- fissa, tutte le istruzioni hanno la stessa lunghezza, ma posso avere più formati cambiando i campi. Questo formato è estremamente efficiente nell'uso della pipeline. 
+- variabile, ogni istruzione ha una lunghezza che dipende dal numero di operandi e nel campo con l'opcode devo anche specificare il numero di operandi. Permettono una grande flessibilità, ma incrementano notevolmente la complessità. 
+- ibrida, ho diversi formati con lunghezza fissa ma diversa 
+
+La lunghezza è data da un compromesso tra repertorio di istruzioni potente e necessità di risparmiare spazio ed è condizionata da diversi fattori: dimensione memoria (deve poter essere completamente indirizzata), organizzazione della memoria, struttura del bus (in base a quanto è capiente posso discriminare il numero di accessi), complessità della CPU (CPU con più istruzioni necessita di più bit per l'opcode) e la velocità richiesta della CPU(se la CPU utilizza la pipeline). 
+L'allocazione dei bit nei campi d'indirizzo dipende da: numero dei metodi d'indirizzamento, numero di operandi, numero di registri (più sono, più vengono utilizzati, minore sarà il numero di bit utilizzati per il più costoso indirizzamento a memoria), numero di banchi di registro (solo alcune architetture li posseggono), intervallo di indirizzi da rendere disponibile, granularità d'indirizzamento (byte o parola, a volte può essere utile il byte anche se più costoso nel numero di accessi). 
+
+Prima di inoltrasi nella descrizione dei formati è utile precisare degli svantaggi e vantaggi generali: 
+- Una grande varietà di istruzioni e di lunghezze differenti permettono l'utilizzo di un vasto numero di opcode e metodi di indirizzamento, permettendo una grande flessibilità. Questo tipo di istruzioni può essere realizzato utilizzando istruzioni a lunghezza variabile, ma il loro 
+utilizzo complica notevolmente la CPU(rendendola anche più costosa), rende difficile il fetch e globalmente diminuisce la reattività sulle operazione più frequentemente utilizzate. 
+Tale caratteristiche si avvicinano alla filosofia CISC. 
+- Un numero fisso di formati ha come problemi la mancanza di ortogonalità(cioè operandi indipendenti dal codice operativo) tra opcode e metodo d'indirizzamento ed un numero limitato di operandi utilizzabili per operazione. In generale vi è una mancanza di flessibilità. La CPU è però più semplice da realizzare, generalmente più, permette il caricamento dell'istruzione in modo uniforme veloce ed una dimensione fissa delle istruzioni favorisce l'uso della pipeline. Tale caratteristiche si avvicinano alla filosofia RISC. 
+
+I possibili formati di codifica di una istruzione sono: 
+- PDP-8: architettura molto vecchia in cui era disponibile un solo registro, l'accumulatore. Nonostante le forti limitazioni vi è un indirizzamento abbastanza flessibile. Le istruzioni erano a lunghezza fissa, con molti formati, che permettevano un estensione degli opcode grazie all'utilizzo di microperazioni. 
+Un formato ottimizzato al massimo per quel tempo. 
+- PDP-10: innovativo rispetto al PDP-8: un unico formato a lunghezza fissa, le stesse tipologie di operazioni per diversi tipi di operandi, solo indirizzamento diretto ed introdotto il concetto di ortogonalità. 
+Facilitava il lavoro dei programmatori e dei compilatori ma non utilizzava in modo efficiente lo spazio a disposizione. (scelta progettuale) 
+- PDP-11: adotta una formato ibrido in cui ogni operando può utilizzare un qualsiasi tipo di indirizzamento. Ha un'ampia variabilità di formati e metodi di indirizzamento che la rendono costosa e complicata da realizzare, ma i programmi risultano essere efficienti e compatti. 
+- VAX: un sistema estremamente variabile con lunghezza varabile e formati diversi, in quanto l'opcode può stare su un byte o su due. E' un sistema molto flessibile e potente che facilita il lavoro di programmatori e compilatori, ma il sistema è molto complesso. 
+- PENTIUM: le istruzioni sono composte da vari pezzi i quali vengono assemblati in base alle necessità. Il risultato sono quindi istruzioni a lunghezza variabile e di vari formati che richiedono una complessa decodifica. Tale approccio è stato utilizzato per mantenere la retro compatibilità. 
+- PowerPC: un sistema con istruzioni a lunghezza fissa e diversi formati, avendo una suddivisione non omogenea dei campi. Pensato per computer RISC.
+
+- - -
+
+# Si discuta nel dettaglio in cosa consista il formato variabile per le istruzioni. Se possibile, dare esempi di formati variabili. 
+
+Un formato variabile per le istruzioni è un formato che permette una grande varietà di istruzioni ed una grande flessibilità. 
+Tali istruzioni hanno lunghezze variabili, cioè ogni istruzione ha una lunghezza che dipende dal numero di operandi ed ha un campo opcode generalmente espanso, così da permettere la codifica di un vasto numero di operazioni e metodi di indirizzamento ed inoltre il campo nel campo opcode viene anche specificare il numero di operandi presenti nell'istruzione. Una istruzione con formato variabile può inoltre avere un numero variabile di campi di tipo diverso, come ad esempio nel PENTIUM. 
+L'utilizzo di questo tipo di istruzioni complica notevolmente la CPU, la rende più costosa, rende difficile il fetch e globalmente diminuisce la reattività sulle operazione più frequentemente utilizzate. 
+Tale caratteristiche si avvicinano alla filosofia CISC. 
+Due esempi di formati variabili delle istruzioni li troviamo storicamente nel: 
+ VAX: un sistema estremamente variabile con lunghezza varabile e formati diversi, in quanto l'opcode può stare su un byte o su due. E' un sistema molto flessibile e potente che facilita il lavoro di programmatori e compilatori, ma il sistema è molto complesso. 
+ PENTIUM: le istruzioni sono composte da vari pezzi i quali vengono assemblati in base alle necessità. Il risultato sono quindi istruzioni a lunghezza variabile e di vari formati che richiedono una complessa decodifica. Tale approccio è stato utilizzato per mantenere la retro compatibilità. 
+
+- - -
+
 # Si elenchino, e si discutano, i fattori che condizionano e che sono condizionati dalla lunghezza del formato delle istruzioni.
 
 - - -
