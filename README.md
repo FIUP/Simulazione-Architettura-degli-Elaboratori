@@ -18,8 +18,6 @@ decisione finale di valutare come overflow come condizione di errore o come rapp
 rappresenta un numero denormalizzato, e il vero esponente è -126 o -1022.
 - Un esponente di tutti 1 con mantissa non nulla ha il valore simbolico di NaN, utile per segnalare condizioni di errore.
 
-- - -
-
 # Si descriva nel dettaglio la modalità di indirizzamento per spiazzamento.
 
 L'indirizzamento per spiazzamento combina le capacità di quello diretto con quelle del registro indiretto. 
@@ -41,8 +39,6 @@ Esistono tre sottomodalità:
 3. Nell’indicizzazione il campo indirizzo rappresenta un indirizzo di memoria centrale e il registro referenziato contiene uno spiazzamento positivo da tale indirizzo. L'indicizzazione si rivela molto utile nelle operazioni operative. Supponendo di avere un elenco di numeri che parte dall'indirizzo A, e di dover scorrere tale elenco, sarà necessario incrementare A di (ad esempio) 1 ogni volta. Il valore A viene memorizzato nel campo dell'indirizzo dell'istruzione e al registro scelto, detto registro indice, viene inizialmente assegnato il valore 0. Dopo ciascuna operazione, il registro indice è incrementato. Alcune sistemi impiegano l'incremento all'interno dello stesso ciclo di clock dell'operazione; l'indicizzazione di tali sistemi è detta *autoindicizzazione*
 di 1.
 
-- - -
-
 # Si metta a confronto criticamente il modo in cui un’architettura RISC utilizza l’ampio banco di registri a sua disposizione rispetto alla gestione di una cache
 
 L’architettura RISC utilizza l’ampio banco di registri per conservare le variabili (prevalentemente scalari locali) che hanno un’alta probabilità di essere utilizzate con maggior frequenza. Sotto questo punto di vista il banco dei registri assomiglia molto alla memoria cache, sbbene sia molto più veloce. Ci sono però alcune sostanziali differenze:
@@ -54,8 +50,6 @@ Per accedere ad uno scalare locale in un BR viene utilizzato l’indirizzamento 
 Per quanto riguarda la cache invece, l’indirizzamento è molto più lento. La maggior parte delle cache infatti sono set-associative, il che comporta delle operazioni di confronto con il set e il tag per determinare la presenza o no di un dato in cache.
 Anche nel caso della cache a indirizzamento diretto o fully-associative, questi modi sono comunque indirizzamenti a memoria che sono sempre più lenti di un indirizzamento a registro.
 
-- - -
-
 # Nel contesto di una pipeline, descrivere nel dettaglio la tecnica del data-forwarding: a cosa serve? Come funziona? Di che supporto hardware ha bisogno? 
 
 Il data forwarding è una delle soluzioni utilizzate per superare le dipendenze dai dati dai dati che si possono verificare tra le istruzioni in una pipeline. 
@@ -66,8 +60,6 @@ Un esempio pratico di data forward lo troviamo nell'architettura MIPS in cui vi 
  Hazard detection Unit: unità in grado di riconoscere le dipendenze e di generare stalli in caso di dipendenze non risolvibili 
  Control Unit: manda segnali di controllo che regolano il forward ed i dati che devono essere mandati (inoltre manda segnali di controllo che regolano l'esecuzione e l'utilizzo dell'hardware per la memorizzazione ed il write back) 
 Nel caso in cui la dipendenza venga rilevata come risolvibile, allora nelle MIPS sarà possibile fare il forward di dati da fase EX a EX e da fase EX a MEM.
-
-- - -
 
 # Spiegare in che modo un compilatore possa aiutare l’utilizzo efficace dei registri da parte di un’architettura RISC.
 
@@ -89,8 +81,6 @@ Ogni gruppo di registri è suddiviso in tre sottogruppi: parametri passati alla 
 I registri temporanei di un gruppo si sovrappongono perfettamente con quelli che contengono i parametri del gruppo successivo, cioè del gruppo riferito ad una chiamata annidata. Tali registri sono fisicamente gli stessi e ciò permette il passaggio dei parametri senza trasferimento dei dati. 
 La realizzazione fisica di finestre di registri sovrapposte avviene tramite buffer circolare. 
 Nel buffer circolare, quando avviene una chiamata il puntatore alla finestra corrente (CWP) viene aggiornato per farlo puntare alla finestra attiva. Se si esaurisce la capacità del buffer, cioè tutte le finestre sono in uso a causa di chiamate annidate, la finestra che per prima è stata inserita nel buffer viene salvata in memoria principale e quindi sovrascritta dalla nuova. Quando una procedura termina, una finestra viene liberata e grazie ad un apposito puntatore (SWP) è possibile ripristinare l'ultima finestra salvata in memoria principale.
-
-- - -
 
 # Formato delle istruzioni
 
@@ -120,8 +110,6 @@ Facilitava il lavoro dei programmatori e dei compilatori ma non utilizzava in mo
 - PENTIUM: le istruzioni sono composte da vari pezzi i quali vengono assemblati in base alle necessità. Il risultato sono quindi istruzioni a lunghezza variabile e di vari formati che richiedono una complessa decodifica. Tale approccio è stato utilizzato per mantenere la retro compatibilità. 
 - PowerPC: un sistema con istruzioni a lunghezza fissa e diversi formati, avendo una suddivisione non omogenea dei campi. Pensato per computer RISC.
 
-- - -
-
 # Si discuta nel dettaglio in cosa consista il formato variabile per le istruzioni. Se possibile, dare esempi di formati variabili. 
 
 Un formato variabile per le istruzioni è un formato che permette una grande varietà di istruzioni ed una grande flessibilità. 
@@ -132,8 +120,6 @@ Due esempi di formati variabili delle istruzioni li troviamo storicamente nel:
  VAX: un sistema estremamente variabile con lunghezza varabile e formati diversi, in quanto l'opcode può stare su un byte o su due. E' un sistema molto flessibile e potente che facilita il lavoro di programmatori e compilatori, ma il sistema è molto complesso. 
  PENTIUM: le istruzioni sono composte da vari pezzi i quali vengono assemblati in base alle necessità. Il risultato sono quindi istruzioni a lunghezza variabile e di vari formati che richiedono una complessa decodifica. Tale approccio è stato utilizzato per mantenere la retro compatibilità. 
 
-- - -
-
 # Si descriva sinteticamente l'implementazione delle istruzioni attraverso la tecnica della microprogrammazione. Si dica se questa tecnica viene utilizzata per i processori CISC o RISC, motivare la risposta. 
 
 La microprogrammazione è utilizzata per implementare l'Unità di Controllo della CPU la quale, grazie al microprogramma, implementa ogni istruzione tramite una sequenza di micro-operazioni eseguite direttamente dall'hardware e di generare nella giusta sequenza i segnali di controllo che provocano l'esecuzione di ogni operazione elementare. 
@@ -141,13 +127,9 @@ Il microprogramma (firmware) nell'unità di controllo ha una struttura ciclica i
 In generale la parte operativa invia all'unità di controllo delle variabili di condizionamento. In base a queste variabili, l'Unità di controllo manda dei segnali di controllo (α β) che designano la micro-operazione da eseguire. 
 La microprogrammazione è la soluzione tipica di architetture CISC per implementare l'Unità di Controllo. Questo perché l'adozione di tale tecnica permette una maggiore flessibilità nella progettazione, cioè rende facile modificare le sequenze di micro-operazioni che implementano le istruzioni eseguite dalla CPU, e premette la realizzazione di un vasto numero di istruzioni da parte della CPU.
 
-- - -
-
 # Discutere le motivazioni alla base dei processori multicore. 
  
 I microprocessori hanno visto una crescita esponenziale delle prestazioni grazie al miglioramento dell'organizzazione ed all'incremento delle frequenza di clock. Il miglioramento dell'organizzazione del cip è stato fortemente focalizzato sull'incremento delle parallelismo tra istruzioni. Si è passati infatti dall'introduzione della pipeline, a CPU superscalari, in cui vi sono pipeline parallele, sino a CPU con multithreading simultaneo (SMT), in cui alle pipeline parallele sono associati banchi di registri replicati.Tali miglioramenti hanno però richiesto un aumento di complessità, dalla quale segue quindi una logica più complessa quindi difficile da realizzare, progettare e verificare, ed un aumento dell'area del chip per permettere di supportare il parallelismo. Inoltre all'aumentare della densità del cip, dovuta all'aumento delle complessità, ed all'aumentare della frequenza di clock è seguito un aumento esponenziale della potenza richiesta, quindi maggiore energia consumata e maggior calore prodotto. Con le CPU SMT si era giunti al limite della potenza erogabile ed ai limiti del parallelismo a livello di istruzioni, quindi per permettere un aumento delle capacità delle CPU si è scelto di passare adarchitetture multicore.Si ipotizza infatti che con le architetture multicore sia possibile un incremento prestazionale quasi lineare, anche se i vantaggi prestazionali dipendono dallo sfruttamento efficace delle risorse parallele da parte dei programmi (piccole quantità di codice seriale ha un impatto significativo sulle prestazioni).
-
-- - -
 
 # Si descrivano le possibili alternative di organizzazione per un processore multicore. 
 
@@ -162,16 +144,8 @@ L'organizzazione di un processore multicore dipende da:
   * Cache L2 condivisa: ogni core ha la propria cache L1 dedicata, ma vi è una cache L2 condivisa tra tutti i core. 
   * Cache L3 condivisa: ogni core ha la propria cache L1 ed L2 dedicata, ma vi è una cache L3 condivisa tra tutti i core. 
 
-- - -
-
 # Si elenchino, e si discutano, i fattori che condizionano e che sono condizionati dalla lunghezza del formato delle istruzioni.
-
-- - -
 
 # Nel contesto di una pipeline, si motivi e si spieghi in dettaglio la tecnica del buffer circolare per la gestione delle dipendenze da controllo.
 
-- - -
-
 # Si motivi la presenza nei processori RISC di un ampio banco di registri a uso generale. Spiegare in dettaglio il meccanismo di funzionamento di tale banco di registri.
-
-- - -
