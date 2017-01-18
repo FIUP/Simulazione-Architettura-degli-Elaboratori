@@ -120,6 +120,27 @@ La microprogrammazione è la soluzione tipica di architetture CISC per implement
 
 - - -
 
+# Discutere le motivazioni alla base dei processori multicore. 
+ 
+I microprocessori hanno visto una crescita esponenziale delle prestazioni grazie al miglioramento dell'organizzazione ed all'incremento delle frequenza di clock. Il miglioramento dell'organizzazione del cip è stato fortemente focalizzato sull'incremento delle parallelismo tra istruzioni. Si è passati infatti dall'introduzione della pipeline, a CPU superscalari, in cui vi sono pipeline parallele, sino a CPU con multithreading simultaneo (SMT), in cui alle pipeline parallele sono associati banchi di registri replicati.Tali miglioramenti hanno però richiesto un aumento di complessità, dalla quale segue quindi una logica più complessa quindi difficile da realizzare, progettare e verificare, ed un aumento dell'area del chip per permettere di supportare il parallelismo. Inoltre all'aumentare della densità del cip, dovuta all'aumento delle complessità, ed all'aumentare della frequenza di clock è seguito un aumento esponenziale della potenza richiesta, quindi maggiore energia consumata e maggior calore prodotto. Con le CPU SMT si era giunti al limite della potenza erogabile ed ai limiti del parallelismo a livello di istruzioni, quindi per permettere un aumento delle capacità delle CPU si è scelto di passare adarchitetture multicore.Si ipotizza infatti che con le architetture multicore sia possibile un incremento prestazionale quasi lineare, anche se i vantaggi prestazionali dipendono dallo sfruttamento efficace delle risorse parallele da parte dei programmi (piccole quantità di codice seriale ha un impatto significativo sulle prestazioni).
+
+- - -
+
+# Si descrivano le possibili alternative di organizzazione per un processore multicore. 
+
+L'organizzazione di un processore multicore dipende da: 
+- il numero di core per cip 
+- la tipologia di core, cioè sei i singoli core sono superscalari o sono multhithreading simultaneo (SMT). I core più vecchi avevano organizzazione superscalare, mentre le cpu multicore più recenti hanno organizzazione SMT. 
+- numero di livelli di cache per chip (che possono essere L1,L2,L3) 
+- quantità di cache condivisa, la cui caratteristica divide i multicore in 4 macrogruppi:
+
+  * Cache L1 dedicata: ogni core ha la propria cache L1 dedicata, la quale è suddivisa tra cache dati e cache istruzioni. 
+  * Cache L2 dedicata: ogni core ha la propria cache L1 ed L2 dedicata. 
+  * Cache L2 condivisa: ogni core ha la propria cache L1 dedicata, ma vi è una cache L2 condivisa tra tutti i core. 
+  * Cache L3 condivisa: ogni core ha la propria cache L1 ed L2 dedicata, ma vi è una cache L3 condivisa tra tutti i core. 
+
+- - -
+
 # Si elenchino, e si discutano, i fattori che condizionano e che sono condizionati dalla lunghezza del formato delle istruzioni.
 
 - - -
