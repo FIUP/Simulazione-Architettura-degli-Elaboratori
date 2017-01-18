@@ -43,6 +43,19 @@ di 1.
 
 - - -
 
+# Si metta a confronto criticamente il modo in cui un’architettura RISC utilizza l’ampio banco di registri a sua disposizione rispetto alla gestione di una cache
+
+L’architettura RISC utilizza l’ampio banco di registri per conservare le variabili (prevalentemente scalari locali) che hanno un’alta probabilità di essere utilizzate con maggior frequenza. Sotto questo punto di vista il banco dei registri assomiglia molto alla memoria cache, sbbene sia molto più veloce. Ci sono però alcune sostanziali differenze:
+Il BR contiene tutti gli scalari locali delle ultime N-1 procedure attivate e la cache contiene gli scalari locali usati di recente.
+Le variabili globali sono assegnate dal compilatore per quanto riguarda il BR, mentre la cache contiene solo quelle usate di recente.
+Mentre il BR contiene solo le variabili in uso, la cache importa un blocco di dati che potrebbe non essere utilizzato.
+Il trasferimento dati tra registri e memoria è determinato in base alla profondità di annidamento delle procedure, mentre per la cache il salvataggio e il rimpiazzo è determinato in base all’algoritmo di sostituzione adottato.
+Per accedere ad uno scalare locale in un BR viene utilizzato l’indirizzamento a registro, che è molto semplice e veloce.
+Per quanto riguarda la cache invece, l’indirizzamento è molto più lento. La maggior parte delle cache infatti sono set-associative, il che comporta delle operazioni di confronto con il set e il tag per determinare la presenza o no di un dato in cache.
+Anche nel caso della cache a indirizzamento diretto o fully-associative, questi modi sono comunque indirizzamenti a memoria che sono sempre più lenti di un indirizzamento a registro.
+
+- - -
+
 # Si elenchino, e si discutano, i fattori che condizionano e che sono condizionati dalla lunghezza del formato delle istruzioni.
 
 - - -
