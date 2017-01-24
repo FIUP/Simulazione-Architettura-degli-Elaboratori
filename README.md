@@ -59,7 +59,8 @@ Un esempio pratico di data-forwarding lo troviamo nell'architettura MIPS in cui 
 
 - Forwarding Unit: unità che decide se attivare il forward attivando nell'opportuno modo i multiplexer della ALU 
 - Hazard detection Unit: unità in grado di riconoscere le dipendenze e di generare stalli in caso di dipendenze non risolvibili 
-- Control Unit: manda segnali di controllo che regolano il forward ed i dati che devono essere mandati (inoltre manda segnali di controllo che regolano l'esecuzione e l'utilizzo dell'hardware per la memorizzazione ed il write back) 
+- Control Unit: manda segnali di controllo che regolano il forward ed i dati che devono essere mandati (inoltre manda segnali di controllo che regolano l'esecuzione e l'utilizzo dell'hardware per la memorizzazione ed il write back)
+
 Nel caso in cui la dipendenza venga rilevata come risolvibile, allora nelle MIPS sarà possibile fare il forward di dati da fase EX a EX e da fase MEM a EX.
 
 # Spiegare in che modo un compilatore possa aiutare l’utilizzo efficace dei registri da parte di un’architettura RISC.
