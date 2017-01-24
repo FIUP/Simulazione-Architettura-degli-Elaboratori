@@ -8,7 +8,7 @@ Tale standard definisce un formato a 32 bit (detto *float*) e un formato a 64 bi
 è rispettivamente di 8 e 11 bit. La base è 2 ed è implicita, il primo bit è relativo al segno del numero, e i restanti bit sono dedicati alla mantissa. 
 Alcune combinazioni di bit servono per rappresentare dei particolari valori. I valori estremi dell'esponente, composti da tutti 0 e tutti 1
 (2^8-1 in formato singolo, 2^11-1 in formato doppio), definiscono difatti dei valori speciali. 
-Per esponenti nell'intervallo 1..2^8-1 in float e 1..2^11-2 in double vengono rappresentati i numeri normalizzati non nulli in virgola mobile.
+Per esponenti nell'intervallo 1..2^8-2 in float e 1..2^11-2 in double vengono rappresentati i numeri normalizzati non nulli in virgola mobile.
 L'esponente è polarizzato e varia da -2^7+2 a 2^7-1 in float e -2^10+2 e 2^10-1 in double. Un numero normalizzato richiede un bit a 1 a sinistra 
 della virgola binaria. Tale bit è implicito, costituendo di fatto un significando effettivo a 24 o 53 bit, detto mantissa o frazione.
 - Un esponente 0 con mantissa a 0 rappresenta +0 o -0, a seconda del bit di segno.
