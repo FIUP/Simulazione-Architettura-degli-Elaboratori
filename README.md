@@ -101,7 +101,7 @@ La lunghezza è data da un compromesso tra repertorio di istruzioni potente e ne
 
 L'allocazione dei bit nei campi d'indirizzo dipende da: numero dei metodi d'indirizzamento, numero di operandi, numero di registri (più sono, più vengono utilizzati, minore sarà il numero di bit utilizzati per il più costoso indirizzamento a memoria), numero di banchi di registro (solo alcune architetture li posseggono), intervallo di indirizzi da rendere disponibile, granularità d'indirizzamento (byte o parola, a volte può essere utile il byte anche se più costoso nel numero di accessi). 
 
-Prima di inoltrasi nella descrizione dei formati è utile precisare degli svantaggi e vantaggi generali: 
+Prima di inoltrarsi nella descrizione dei formati è utile precisare degli svantaggi e vantaggi generali: 
 - Una grande varietà di istruzioni e di lunghezze differenti permettono l'utilizzo di un vasto numero di opcode e metodi di indirizzamento, permettendo una grande flessibilità. Questo tipo di istruzioni può essere realizzato utilizzando istruzioni a lunghezza variabile, ma il loro 
 utilizzo complica notevolmente la CPU(rendendola anche più costosa), rende difficile il fetch e globalmente diminuisce la reattività sulle operazione più frequentemente utilizzate. 
 Tale caratteristiche si avvicinano alla filosofia CISC. 
