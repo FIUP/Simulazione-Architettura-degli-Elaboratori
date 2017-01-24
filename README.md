@@ -75,7 +75,7 @@ Essendovi a disposizione n registri reali, il grafo dovrà essere colorato con a
 
 # Spiegare in dettaglio come un’architettura RISC possa trattare efficientemente la chiamata annidata di procedure
 
-Dall'osservazione che le chiamate di procedura tipicamente coinvolgono pochi parametri e non presentano un grado di annidamento elevata, si è pensato di usare molti gruppi di registri, detti finestre di registri, per gestire le chiamate annidate. 
+Dall'osservazione che le chiamate di procedura tipicamente coinvolgono pochi parametri e non presentano un grado di annidamento elevato, si è pensato di usare molti gruppi di registri, detti finestre di registri, per gestire le chiamate annidate. 
 Una chiamata seleziona automaticamente un nuovo gruppo di registri e quando essa è conclusa ed effettua il ritorno, riseleziona il gruppo di registri riferito alla chiamata che l'aveva chiamata. 
 Ogni gruppo di registri è suddiviso in tre sottogruppi: parametri passati alla procedura, registri che memorizzano il contenuto delle variabili locali della procedura e registri temporanei che gestiscono il ritorno della procedura. 
 I registri temporanei di un gruppo si sovrappongono perfettamente con quelli che contengono i parametri del gruppo successivo, cioè del gruppo riferito ad una chiamata annidata. Tali registri sono fisicamente gli stessi e ciò permette il passaggio dei parametri senza trasferimento dei dati. 
@@ -84,14 +84,21 @@ Nel buffer circolare, quando avviene una chiamata il puntatore alla finestra cor
 
 # Formato delle istruzioni
 
-Il formato delle istruzioni descrive i campi dell'istruzione, la sua lunghezza ed numero di indirizzi. In qualsiasi formato è incluso il codice operativo, che discrimina quale operazione fare, ed zero, uno o più operandi in modo implicito o esplicito. 
+Il formato delle istruzioni descrive i campi dell'istruzione, la sua lunghezza e numero di indirizzi. In qualsiasi formato è incluso il codice operativo, che discrimina quale operazione fare, e zero, uno o più operandi in modo implicito o esplicito. 
 
 Il formato delle istruzioni può essere a lunghezza: 
 - fissa, tutte le istruzioni hanno la stessa lunghezza, ma posso avere più formati cambiando i campi. Questo formato è estremamente efficiente nell'uso della pipeline. 
-- variabile, ogni istruzione ha una lunghezza che dipende dal numero di operandi e nel campo con l'opcode devo anche specificare il numero di operandi. Permettono una grande flessibilità, ma incrementano notevolmente la complessità. 
-- ibrida, ho diversi formati con lunghezza fissa ma diversa 
+- variabile, ogni istruzione ha una lunghezza che dipende dal numero di operandi e nel campo con l'opcode si deve anche specificare il numero di operandi. Permettono una gran flessibilità, ma incrementano notevolmente la complessità. 
+- ibrida, ha diversi formati con lunghezza fissa ma diversa 
 
-La lunghezza è data da un compromesso tra repertorio di istruzioni potente e necessità di risparmiare spazio ed è condizionata da diversi fattori: dimensione memoria (deve poter essere completamente indirizzata), organizzazione della memoria, struttura del bus (in base a quanto è capiente posso discriminare il numero di accessi), complessità della CPU (CPU con più istruzioni necessita di più bit per l'opcode) e la velocità richiesta della CPU(se la CPU utilizza la pipeline). 
+La lunghezza è data da un compromesso tra repertorio di istruzioni potente e necessità di risparmiare spazio ed è condizionata da diversi fattori:
+
+- dimensione memoria (deve poter essere completamente indirizzata)
+- organizzazione della memoria
+- struttura del bus (in base a quanto è capiente posso discriminare il numero di accessi)
+- complessità della CPU (CPU con più istruzioni necessita di più bit per l'opcode)
+- velocità richiesta della CPU (se la CPU utilizza la pipeline)
+
 L'allocazione dei bit nei campi d'indirizzo dipende da: numero dei metodi d'indirizzamento, numero di operandi, numero di registri (più sono, più vengono utilizzati, minore sarà il numero di bit utilizzati per il più costoso indirizzamento a memoria), numero di banchi di registro (solo alcune architetture li posseggono), intervallo di indirizzi da rendere disponibile, granularità d'indirizzamento (byte o parola, a volte può essere utile il byte anche se più costoso nel numero di accessi). 
 
 Prima di inoltrasi nella descrizione dei formati è utile precisare degli svantaggi e vantaggi generali: 
