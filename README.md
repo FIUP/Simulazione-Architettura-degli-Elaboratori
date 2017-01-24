@@ -149,3 +149,20 @@ L'organizzazione di un processore multicore dipende da:
   * Cache L2 dedicata: ogni core ha la propria cache L1 ed L2 dedicata. 
   * Cache L2 condivisa: ogni core ha la propria cache L1 dedicata, ma vi è una cache L2 condivisa tra tutti i core. 
   * Cache L3 condivisa: ogni core ha la propria cache L1 ed L2 dedicata, ma vi è una cache L3 condivisa tra tutti i core. 
+
+# Pipeline
+Se ho sourceInstructionRT == destinationInstructionRT {
+ se ho una destinationInstructionOpcode del tipo register-register ALU {
+   effettuo un forward in Bottom_ALUInput
+ } altrimenti {
+   non effettuo il forward
+ }
+}
+
+Formato I
+
+op   rt, rs, imm
+addi $9, $3, 4    ; ALU immediate
+
+op   rt, imm,rs
+sw   $9, 150($5)  ; store
