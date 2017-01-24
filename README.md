@@ -149,9 +149,3 @@ L'organizzazione di un processore multicore dipende da:
   * Cache L2 dedicata: ogni core ha la propria cache L1 ed L2 dedicata. 
   * Cache L2 condivisa: ogni core ha la propria cache L1 dedicata, ma vi è una cache L2 condivisa tra tutti i core. 
   * Cache L3 condivisa: ogni core ha la propria cache L1 ed L2 dedicata, ma vi è una cache L3 condivisa tra tutti i core. 
-
-# Si elenchino, e si discutano, i fattori che condizionano e che sono condizionati dalla lunghezza del formato delle istruzioni.
-
-# Nel contesto di una pipeline, si motivi e si spieghi in dettaglio la tecnica del buffer circolare per la gestione delle dipendenze da controllo.
-
-# Si motivi la presenza nei processori RISC di un ampio banco di registri a uso generale. Spiegare in dettaglio il meccanismo di funzionamento di tale banco di registri.
