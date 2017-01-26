@@ -1,6 +1,18 @@
 # simulazione-architettura-degli-elaboratori
 Svolgimento simulazione di Architettura degli Elaboratori @unipd
-
+## Indice
+- [Si spieghi in dettaglio la rappresentazione dei numeri reali secondo lo standard IEEE 754.](#)
+- [Si descriva nel dettaglio la modalità di indirizzamento per spiazzamento.](#)
+- [Si metta a confronto criticamente il modo in cui un’architettura RISC utilizza l’ampio banco di registri a sua disposizione rispetto alla gestione di una cache](#)
+- [Nel contesto di una pipeline, descrivere nel dettaglio la tecnica del data-forwarding: a cosa serve? Come funziona? Di che supporto hardware ha bisogno?](#)
+- [Spiegare in che modo un compilatore possa aiutare l’utilizzo efficace dei registri da parte di un’architettura RISC.](#)
+- [Spiegare in dettaglio come un’architettura RISC possa trattare efficientemente la chiamata annidata di procedure](#)
+- [Formato delle istruzioni](#)
+- [Si discuta nel dettaglio in cosa consista il formato variabile per le istruzioni. Se possibile, dare esempi di formati variabili.](#)
+- [Si descriva sinteticamente l'implementazione delle istruzioni attraverso la tecnica della microprogrammazione. Si dica se questa tecnica viene utilizzata per i processori CISC o RISC, motivare la risposta.](#)
+- [Discutere le motivazioni alla base dei processori multicore.](#)
+- [Si descrivano le possibili alternative di organizzazione per un processore multicore.](#)
+- [Pipeline](#)
 # Si spieghi in dettaglio la rappresentazione dei numeri reali secondo lo standard IEEE 754.
 
 Lo IEEE 754 è lo standard internazionale per rappresentare i numeri a virgola mobile, ed è impiegato in tutti i moderni processori e coprocessori aritmetici.
@@ -19,7 +31,6 @@ rappresenta un numero denormalizzato, e il vero esponente è -126 o -1022.
 - Un esponente di tutti 1 con mantissa non nulla ha il valore simbolico di NaN, utile per segnalare condizioni di errore.
 
 # Si descriva nel dettaglio la modalità di indirizzamento per spiazzamento.
-
 L'indirizzamento per spiazzamento combina le capacità di quello diretto con quelle del registro indiretto. 
 Il suo meccanismo di base è EA = A + (R), con:
 
@@ -137,10 +148,10 @@ La microprogrammazione è la soluzione tipica di architetture CISC per implement
  
 I microprocessori hanno visto una crescita esponenziale delle prestazioni grazie al miglioramento dell'organizzazione ed all'incremento delle frequenza di clock. Il miglioramento dell'organizzazione del cip è stato fortemente focalizzato sull'incremento delle parallelismo tra istruzioni. Si è passati infatti dall'introduzione della pipeline, a CPU superscalari, in cui vi sono pipeline parallele, sino a CPU con multithreading simultaneo (SMT), in cui alle pipeline parallele sono associati banchi di registri replicati.Tali miglioramenti hanno però richiesto un aumento di complessità, dalla quale segue quindi una logica più complessa quindi difficile da realizzare, progettare e verificare, ed un aumento dell'area del chip per permettere di supportare il parallelismo. Inoltre all'aumentare della densità del cip, dovuta all'aumento delle complessità, ed all'aumentare della frequenza di clock è seguito un aumento esponenziale della potenza richiesta, quindi maggiore energia consumata e maggior calore prodotto. Con le CPU SMT si era giunti al limite della potenza erogabile ed ai limiti del parallelismo a livello di istruzioni, quindi per permettere un aumento delle capacità delle CPU si è scelto di passare adarchitetture multicore.Si ipotizza infatti che con le architetture multicore sia possibile un incremento prestazionale quasi lineare, anche se i vantaggi prestazionali dipendono dallo sfruttamento efficace delle risorse parallele da parte dei programmi (piccole quantità di codice seriale ha un impatto significativo sulle prestazioni).
 
-# Si descrivano le possibili alternative di organizzazione per un processore multicore. 
+# Si descrivano le possibili alternative di organizzazione per un processore multicore.
 
-L'organizzazione di un processore multicore dipende da: 
-- il numero di core per chip 
+L'organizzazione di un processore multicore dipende da:
+- il numero di core per chip
 - la tipologia di core, cioè sei i singoli core sono superscalari o sono multhithreading simultaneo (SMT). I core più vecchi avevano organizzazione superscalare, mentre le cpu multicore più recenti hanno organizzazione SMT. 
 - numero di livelli di cache per chip (che possono essere L1,L2,L3) 
 - quantità di cache condivisa, la cui caratteristica divide i multicore in 4 macrogruppi:
