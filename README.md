@@ -13,8 +13,8 @@ Svolgimento simulazione di Architettura degli Elaboratori @unipd
 - [Discutere le motivazioni alla base dei processori multicore.](#)
 - [Si descrivano le possibili alternative di organizzazione per un processore multicore.](#)
 - [Pipeline](#)
-# Si spieghi in dettaglio la rappresentazione dei numeri reali secondo lo standard IEEE 754.
 
+# Si spieghi in dettaglio la rappresentazione dei numeri reali secondo lo standard IEEE 754.
 Lo IEEE 754 è lo standard internazionale per rappresentare i numeri a virgola mobile, ed è impiegato in tutti i moderni processori e coprocessori aritmetici.
 Tale standard definisce un formato a 32 bit (detto *float*) e un formato a 64 bit (*double*), la cui dimensione del campo esponente (in formato polarizzato)
 è rispettivamente di 8 e 11 bit. La base è 2 ed è implicita, il primo bit è relativo al segno del numero, e i restanti bit sono dedicati alla mantissa. 
