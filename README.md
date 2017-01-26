@@ -1,20 +1,22 @@
 # simulazione-architettura-degli-elaboratori
 Svolgimento simulazione di Architettura degli Elaboratori @unipd
 ## Indice
-- [Si spieghi in dettaglio la rappresentazione dei numeri reali secondo lo standard IEEE 754.](#)
-- [Si descriva nel dettaglio la modalità di indirizzamento per spiazzamento.](#)
-- [Si metta a confronto criticamente il modo in cui un’architettura RISC utilizza l’ampio banco di registri a sua disposizione rispetto alla gestione di una cache](#)
-- [Nel contesto di una pipeline, descrivere nel dettaglio la tecnica del data-forwarding: a cosa serve? Come funziona? Di che supporto hardware ha bisogno?](#)
-- [Spiegare in che modo un compilatore possa aiutare l’utilizzo efficace dei registri da parte di un’architettura RISC.](#)
-- [Spiegare in dettaglio come un’architettura RISC possa trattare efficientemente la chiamata annidata di procedure](#)
-- [Formato delle istruzioni](#)
-- [Si discuta nel dettaglio in cosa consista il formato variabile per le istruzioni. Se possibile, dare esempi di formati variabili.](#)
-- [Si descriva sinteticamente l'implementazione delle istruzioni attraverso la tecnica della microprogrammazione. Si dica se questa tecnica viene utilizzata per i processori CISC o RISC, motivare la risposta.](#)
-- [Discutere le motivazioni alla base dei processori multicore.](#)
-- [Si descrivano le possibili alternative di organizzazione per un processore multicore.](#)
-- [Pipeline](#)
+
+- [Si spieghi in dettaglio la rappresentazione dei numeri reali secondo lo standard IEEE 754.](#si-spieghi-in-dettaglio-la-rappresentazione-dei-numeri-reali-secondo-lo-standard-ieee-754)
+- [Si descriva nel dettaglio la modalità di indirizzamento per spiazzamento.](#si-descriva-nel-dettaglio-la-modalit--di-indirizzamento-per-spiazzamento)
+- [Si metta a confronto criticamente il modo in cui un’architettura RISC utilizza l’ampio banco di registri a sua disposizione rispetto alla gestione di una cache](#si-metta-a-confronto-criticamente-il-modo-in-cui-un-architettura-risc-utilizza-l-ampio-banco-di-registri-a-sua-disposizione-rispetto-alla-gestione-di-una-cache)
+- [Nel contesto di una pipeline, descrivere nel dettaglio la tecnica del data-forwarding: a cosa serve? Come funziona? Di che supporto hardware ha bisogno?](#nel-contesto-di-una-pipeline--descrivere-nel-dettaglio-la-tecnica-del-data-forwarding--a-cosa-serve--come-funziona--di-che-supporto-hardware-ha-bisogno-)
+- [Spiegare in che modo un compilatore possa aiutare l’utilizzo efficace dei registri da parte di un’architettura RISC.](#spiegare-in-che-modo-un-compilatore-possa-aiutare-l-utilizzo-efficace-dei-registri-da-parte-di-un-architettura-risc)
+- [Spiegare in dettaglio come un’architettura RISC possa trattare efficientemente la chiamata annidata di procedure](#spiegare-in-dettaglio-come-un-architettura-risc-possa-trattare-efficientemente-la-chiamata-annidata-di-procedure)
+- [Formato delle istruzioni](#formato-delle-istruzioni)
+- [Si discuta nel dettaglio in cosa consista il formato variabile per le istruzioni. Se possibile, dare esempi di formati variabili.](#si-discuta-nel-dettaglio-in-cosa-consista-il-formato-variabile-per-le-istruzioni-se-possibile--dare-esempi-di-formati-variabili)
+- [Si descriva sinteticamente l'implementazione delle istruzioni attraverso la tecnica della microprogrammazione. Si dica se questa tecnica viene utilizzata per i processori CISC o RISC, motivare la risposta.](#si-descriva-sinteticamente-l-implementazione-delle-istruzioni-attraverso-la-tecnica-della-microprogrammazione-si-dica-se-questa-tecnica-viene-utilizzata-per-i-processori-cisc-o-risc--motivare-la-risposta)
+- [Discutere le motivazioni alla base dei processori multicore.](#discutere-le-motivazioni-alla-base-dei-processori-multicore)
+- [Si descrivano le possibili alternative di organizzazione per un processore multicore.](#si-descrivano-le-possibili-alternative-di-organizzazione-per-un-processore-multicore)
+- [Pipeline](#pipeline)
 
 # Si spieghi in dettaglio la rappresentazione dei numeri reali secondo lo standard IEEE 754.
+
 Lo IEEE 754 è lo standard internazionale per rappresentare i numeri a virgola mobile, ed è impiegato in tutti i moderni processori e coprocessori aritmetici.
 Tale standard definisce un formato a 32 bit (detto *float*) e un formato a 64 bit (*double*), la cui dimensione del campo esponente (in formato polarizzato)
 è rispettivamente di 8 e 11 bit. La base è 2 ed è implicita, il primo bit è relativo al segno del numero, e i restanti bit sono dedicati alla mantissa. 
